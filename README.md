@@ -1,6 +1,12 @@
 # Graphql-Github-Rest-Api-Wrapper
 
-    
+    Sample project that shows how to wrapping a REST API with a GraphQL schema. We’ll go with the GitHub API.
+    This project is simply an example of how to wrapping a REST API. GitHub has its own GraphQL API (https://developer.github.com/v4/) 
+    which is what we should use in a project.
+
+    This project has been developed to practice my skills with the tech stack:
+
+    GraphQL over REST with Node, Express and Apollo Engine.
 
 ## Running
 
