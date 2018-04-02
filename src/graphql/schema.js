@@ -130,7 +130,7 @@ const typeDefs = gql`
     forks: Int,
     watchers: Int,
     default_branch: String,
-    owner: [Owner]
+    owner: Owner
   }
   type Owner @cacheControl(maxAge: 60) {
     login: String,
@@ -151,15 +151,10 @@ const resolvers = {
       )
         .then(res => res.json())
         .then(data => {
-          console.log(data);
-
+          // console.log(data);
           return data.items.map(repository => {
-              console.log("******************************************************************");
-              console.log(repository);
-              return Object.assign({ name, id, fullname, private, language }, repository)
+              return repository;
           })
-
-          // return Object.assign({ name, id, fullname, private, language }, data);
         });
     }
   }

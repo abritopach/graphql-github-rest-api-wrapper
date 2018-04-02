@@ -52,7 +52,11 @@ const engine = new ApolloEngine({
   ],
   queryCache: {
     publicFullQueryStore: "publicResponseCache"
+  }/*,
+  logging: {
+    level: "DEBUG" // Engine Proxy logging level. DEBUG, INFO (default), WARN or ERROR.
   }
+  */
 });
 
 // Start the app.
