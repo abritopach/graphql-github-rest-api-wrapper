@@ -4,6 +4,8 @@ const fetch = require("node-fetch");
 
 const gql = String.raw;
 
+const GITHUB_API_SEARCH_URL = 'https://api.github.com/search/repositories?sort="stars"&order="desc"&q=topic:';
+
 /*
 
   {
@@ -108,7 +110,7 @@ const gql = String.raw;
 
 const typeDefs = gql`
   type Query {
-    popularRepositoriesList: [Repository]
+    popularRepositoriesList(topic: String): [Repository]
   }
   type Repository @cacheControl(maxAge: 60) {
     id: ID
@@ -139,15 +141,17 @@ const typeDefs = gql`
     gravatar_id: String,
     url: String,
     html_url: String,
-    type: String,
+    type: String
   }
 `;
 
 const resolvers = {
   Query: {
     popularRepositoriesList: (root, args, context) => {
+      console.log(args);
+      if (typeof args.topic === "undefined") args.topic = "javascript"
       return fetch(
-        'https://api.github.com/search/repositories?q=topic:javascript&sort="stars"&order="desc"'
+        GITHUB_API_SEARCH_URL + args.topic
       )
         .then(res => res.json())
         .then(data => {
